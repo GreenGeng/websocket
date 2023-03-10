@@ -1,6 +1,5 @@
 package com.learnbyheart.demo1.websocket;
 
-import com.learnbyheart.demo1.config.GetHttpSessionConfigurator;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
