@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<input id="text" type="text"/>
+<button onclick="send()">send</button>
+<button onclick="closeWebSocket()">close</button>
+<div id="message"></div>
+<body>
+
+<script type="text/javascript"src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    var ws = new WebSocket("ws://localhost:8080/p2p");
+
+    ws.onerror = function (){
+        setMessageInnerHTML("服务端通信异常")
+    }
+    ws.onopen = function (){
+        setMessageInnerHTML("与服务器建立连接")
+    }
+    ws.onmessage = function (event){
+        setMessageInnerHTML(event.data)
+    }
+    ws.onclose = function (){
+        setMessageInnerHTML("连接关闭")
+    }
+    window.onbeforeunload = function (){
+        ws.close()
+    }
+    function  setMessageInnerHTML(innerHTML){
+        document.getElementById('message').innerHTML += innerHTML+'<br/>'
+    }
+    function closeWebSocket(){
+        ws.close()
+    }
+    function send(){
+        var msg  =  document.getElementById('text').value;
+        ws.send(msg)
+    }
+</script>
+</body>
+</html>

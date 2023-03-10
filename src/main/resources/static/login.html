@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript"src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--<script src="js/jquery.min.js"></script>-->
+<form id="loginForm">
+    <label>账号：</label>
+    <input type="text" name="user">
+    <label>密码：</label>
+    <input type="password" name="pwd">
+    <button type="button" id="btn">登录</button>
+</form>
+<p id="err_msg"></p>
+<script>
+    $("#btn").click(function () {
+        $.get("toLogin?",$("#loginForm").serialize(),function(res){
+            if (res.flag){
+                console.log(res);
+                location.href = "main.html";
+            } else {
+                console.log(res);
+                $("#err_msg").html(res.message);
+            }
+        },"json");
+    })
+</script>
+</body>
+</html>
