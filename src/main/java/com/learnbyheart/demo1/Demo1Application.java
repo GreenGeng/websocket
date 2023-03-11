@@ -19,5 +19,17 @@ public class Demo1Application {
     public ServerEndpointExporter serverEndpointExporter(){
         return new ServerEndpointExporter();
     }
+    /**
+     *
+     * websocket的实现
+     * 先注入 ServerEndpointExporter这个对象是开启websocket
+     * 前端编写ajax 调用后端接口 @ServerEndpoint(value = "/p2p")
+     * 然后里面就是具体的实现
+     * @OnOpen
+     * @OnClose
+     * @OnMessage
+     * 里面的Session就是从前端传递的session
+     *
+     */
 
 }
